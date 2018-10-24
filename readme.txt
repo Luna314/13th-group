@@ -1,2 +1,6 @@
-Git is a distributed version control system.
-Git is free software.
+     13组
+1. SZ160110205	许浚伟
+2. SZ160110216	赵昕玥
+3. SZ160110224	姜昊
+4. SZ160110214	陈润泽
+5. SZ160110231	但远琦
