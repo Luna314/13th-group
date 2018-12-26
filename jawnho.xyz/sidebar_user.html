@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidebar</title>
+    <!--Tab页图标-->
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo/logosmall.png" />
+    <!--插入js脚本-->
+    <script src="style/js/jquery-1.8.3.min.js"></script>
+    <!--设置多级导航菜单的插件-->
+    <script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
+    <!--设置滚动传送的插件-->
+    <!-- <![endif]-->
+    <link rel="stylesheet" type="text/css" href="style/css/ddsmoothmenu.css" />
+    <!--<script>-->
+        <!--jQuery(document).ready(function($) {-->
+            <!--$('.logbtn').click(function(){-->
+                <!--$('.theme-popover-mask').fadeIn(100);-->
+                <!--$('.theme-popover').slideDown(200);-->
+            <!--})-->
+            <!--$('.theme-poptit .close').click(function(){-->
+                <!--$('.theme-popover-mask').fadeOut(100);-->
+                <!--$('.theme-popover').slideUp(200);-->
+            <!--})-->
+        <!--})-->
+    <!--</script>-->
+
+</head>
+<body>
+	<script language="javascript">
+				function get_cookie(cookieName){
+				//判断cookie是否存在
+				if (document.cookie.length>0){
+						pos=document.cookie.indexOf(cookieName + "=")
+					if (pos!=-1){ 
+						pos=pos + cookieName.length+1 
+						last=document.cookie.indexOf(";",pos)
+						if (last==-1) last=document.cookie.length
+							return unescape(document.cookie.substring(pos,last))
+						} 
+					}
+				return 0;
+				}
+				var param = get_cookie('name');
+				function checklogin(){
+				if(get_cookie('name')==0){
+					alert("请先登录使用完整功能",2);return false;
+				}
+				else{
+				    return true;
+				}
+				}
+				
+				function clearCookie(){
+				var date=new Date();
+				date.setTime(date.getTime()-10000);
+				var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+				if (keys) {
+				for (var i =  keys.length; i--;)
+					document.cookie=keys[i]+"=0; expire="+date.toGMTString()+"; path=/";
+				}
+				}
+				function exit(){
+				if(get_cookie('name')!=0){
+				    clearCookie();return true;
+				}
+				}
+				function my_function()
+				{//替换demo里面的文本内容
+					if(param!=0)
+					{
+						document.getElementById("logflag").innerHTML = param;
+                        document.getElementById("logflag").setAttribute('href','index.html');
+					}
+					else
+					{
+						document.getElementById("logflag").innerHTML = "登录";
+						document.getElementById("logflag").setAttribute('href','log.html');
+					  
+					}
+				}
+				window.onload = function () {
+					var li = document.getElementById('logflag');
+					li.onmouseover = function (){
+
+					if(param!=0){
+						li.innerHTML='注销';
+					}
+					}
+					li.onmouseout = function (){
+
+					if(param!=0){
+						li.innerHTML=param;
+					}
+            }
+
+        }
+		$(document).ready(function () {
+			my_function();
+		});
+	</script>
+    <!-- Begin Menu -->
+    <!--<div id="menu-ajax">-->
+        <!--<ul>-->
+            <!--<li><a href="gallery.html">可视化画廊展示</a></li>         &lt;!&ndash;from portfolio2.html&ndash;&gt;-->
+            <!--<li><a href="visualizationEntry.html">可视化功能入口</a>   &lt;!&ndash;from portfolio4.html&ndash;&gt;-->
+                <!--&lt;!&ndash;票房份额饼状图，票房份额直方图&ndash;&gt;-->
+                <!--&lt;!&ndash;票房走势折线图&ndash;&gt;-->
+                <!--&lt;!&ndash;年份最佳电影云图&ndash;&gt;-->
+                <!--&lt;!&ndash;劳模影星柱状图,点状图&ndash;&gt;-->
+                <!--<ul>-->
+                    <!--<li><a href="visualizationEntry.html">可视化功能汇总入口</a></li>-->
+                    <!--<li><a href="vis1_boxOffice_Piechart.html">票房份额分析</a></li>         &lt;!&ndash;from post.html&ndash;&gt;-->
+                    <!--<li><a href="vis2_boxOffice_Histogram.html">票房走势折线图</a></li>-->
+                    <!--<li><a href="vis3_boxOffice_Linechart.html">最佳电影云图</a></li>-->
+                    <!--<li><a href="vis4_film_Wordcloud.html">劳模影星分析</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li><a href="report.html">生成报表</a></li>                 &lt;!&ndash;from portfolio3.html&ndash;&gt;-->
+            <!--<li><a href="contact.html">联系我们</a></li>                &lt;!&ndash;from contact.html&ndash;&gt;-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; End Menu &ndash;&gt;-->
+    <a class="animateddrawer" id="ddsmoothmenu-mobiletoggle" href="#">
+        <span></span>
+    </a>
+	<script type="text/javascript">
+		window.alert = function (txt, time) {
+            if (document.getElementById("alertFram")) {
+                return;
+            }
+            var alertDiv = document.createElement("DIV");
+            alertDiv.id = "alertFram";
+            alertDiv.style.position = "absolute";
+            alertDiv.style.left = "50%";
+            alertDiv.style.top = "40%";
+            alertDiv.style.marginLeft = "-225px";
+            alertDiv.style.marginTop = "-75px";
+            alertDiv.style.width = "450px";
+            alertDiv.style.height = "150px";
+            alertDiv.style.background = "#ccc";
+            alertDiv.style.textAlign = "center";
+            alertDiv.style.lineHeight = "150px";
+            alertDiv.style.zIndex = "10000";
+            alertDiv.innerHTML = "<ul style='list-style:none;margin:0px;padding:0px;width:100%'><li style='background:#DD828D;text-align:left;padding-left:10px;font-size:14px;font-weight:bold;height:27px;line-height:25px;border:1px solid #F9CADE;'>MovieLook提示</li><li style='background:#fff;text-align:center;font-size:17px;height:120px;line-height:120px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;'>" + txt + "</li><li style='background:#FDEEF4;text-align:center;font-weight:bold;height:27px;line-height:25px; border:1px solid #F9CADE;'onclick='doOk()'><input type='button' style='background-color: #FDEEF4;border: none;outline:none;' value='确 定'/></li></ul>";
+                            //                                                                                                                                                                  提示框高度 ;提示文本高度位置;                                                                                          文本字体大小  ;                               左边框颜色                   ;右边框颜色                    ;                                                                    
+			document.body.appendChild(alertDiv);
+            var c = 0;
+            this.timer = function () {
+                if (c++ >= time) {
+                    clearInterval(ad);
+                    document.body.removeChild(alertDiv);
+                }
+            }
+            var ad = setInterval("timer()", 1000);
+            this.doOk = function () {
+                document.body.removeChild(alertDiv);
+            }
+            alertDiv.focus();
+            document.body.onselectstart = function () {
+                return false;
+            };
+        }
+	</script>
+    <div  id="smoothmenu1" >
+        <ul>
+            <li id="firstli"><img src="images/logo/logo1.jpg" id="logopic"></li>
+            <li ><a href="index.html">首页</a></li>         <!--from portfolio2.html-->
+            <li><a href="gallery.html">可视化画廊展示</a></li>         <!--from portfolio2.html-->
+            <li><a href="#" onClick="return checklogin();">可视化功能入口</a>   <!--from portfolio4.html-->
+                <ul>
+                    <li class="secli"><a href="visualizationEntry.html" onClick="return checklogin();">可视化功能汇总入口</a></li>
+                    <li class="secli"><a href="vis1_boxOffice_Piechart.html" onClick="return checklogin();">票房份额饼图</a></li>
+                    <li class="secli"><a href="vis2_boxOffice_Histogram.html" onClick="return checklogin();">票房份额直方图</a></li>
+                    <li class="secli"><a href="vis3_boxOffice_Linechart.html" onClick="return checklogin();">票房走势折线图</a></li>
+                    <li class="secli"><a href="vis4_film_Wordcloud.html" onClick="return checklogin();">最佳电影云图</a></li>
+                    <li class="secli"><a href="vis5_star_Wordcloud.html" onClick="return checklogin();">劳模影星云图</a></li>
+                    <li class="secli"><a href="vis6_star_Histogram.html" onClick="return checklogin();">劳模影星直方图</a></li>
+                </ul>
+            </li>
+            <li><a href="report.html" onClick="return checklogin();">生成报表</a></li>                 <!--from portfolio3.html-->
+            <li><a href="contact.html">关于我们</a></li>                <!--from contact.html-->
+			<li><a id="logflag" name="logflag" onClick="return exit();"></a></li>                <!--from contact.html-->
+		</ul>
+        <br style="clear: left" />
+    </div>
+
+    <!--<div class="theme-popover">-->
+        <!--<div class="theme-poptit">-->
+            <!--<a href="javascript:" title="关闭" class="close">×</a>-->
+            <!--<h3>登录</h3>-->
+        <!--</div>-->
+        <!--<div class="theme-popbod dform">-->
+            <!--<form class="theme-signin" name="loginform" action="" method="post">-->
+                <!--<ol>-->
+                    <!--<li><h1 class="logwel">欢迎进入MovieLook电影视界</h1></li>-->
+                    <!--<li><input class="ipt" type="text" name="log" placeholder="请输入邮箱" size="20" /></li>-->
+                    <!--<li><input class="ipt" type="password" name="pwd" placeholder="请输入密码"  size="20" /></li>-->
+                    <!--<li><p class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新用户首次登录自动验证邮箱注册噢！</p></li>-->
+                    <!--<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " /></li>-->
+                <!--</ol>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="theme-popover-mask"></div>-->
+</body>
+</html>

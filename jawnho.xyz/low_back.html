@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MovieLook</title>
+    <script src="style/js/jquery.cookie.js"></script>
+    <!--Tab页图标-->
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo/logosmall.png" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        #bg_wrap {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+
+        #bg_wrap div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            /* 设置透明度 */
+            transition: opacity 3s;
+        }
+        /* nth-of-type(1) *筛选选择器选择第一个*/
+
+        #bg_wrap div:nth-of-type(1) {
+            opacity: 1;
+        }
+
+        #Login {
+            width: 272px;
+            height: 300px;
+            margin: 200px auto;
+        }
+
+        #Login .move {
+            position: absolute;
+            top: -100px;
+            z-index: 999;
+        }
+
+        #Login h3 {
+            width: 270px;
+            font-size: 38px;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Ink Free', sans-serif;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: move;
+            /* top: 100px; */
+        }
+        /*  #username {
+            top: 170px;
+        }
+
+        #password {
+            top: 225px;
+        } */
+
+        #Login input.text {
+            width: 270px;
+            height: 42px;
+            color: #fff;
+            background: rgba(45, 45, 45, 0.15);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 1.0) inset;
+            text-indent: 10px;
+        }
+
+        #Login input.btn {
+            /* top: 280px; */
+            background: #ef4300;
+            width: 272px;
+            height: 44px;
+            border-radius: 6px;
+            color: #fff;
+            box-shadow: 0 15px 30px 0 rgba(255, 255, 255, 0.25) inset, 0 2px 7px 0 rgba(0, 0, 0, 0.2);
+            /* -webkit-box-shadow: 0 15px 30px 0 rgba(255, 255, 255, 0.25) inset, 0 2px 7px 0 rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 15px 30px 0 rgba(255, 255, 255, 0.25) inset, 0 2px 7px 0 rgba(0, 0, 0, 0.2); */
+            border: 0;
+            text-align: center;
+            font-family: 'Ink Free', sans-serif;
+            font-size:18px
+        }
+        /* #Login input.focus {
+            outline: none;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2) inset;
+        } */
+
+        input::-webkit-input-placeholder {
+            color: #fff;
+        }
+        .return{
+            z-index: 100;
+            position: absolute;
+            right: 8px;
+            top:8px;
+            font-family: Microsoft JhengHei, sans-serif;
+            font-size: 20px;
+            color:#fff;
+        }
+		.Return{
+            z-index: 100;
+            position: absolute;
+            left: 44%;
+            bottom: 15%;
+            font-family: Microsoft JhengHei, sans-serif;
+            font-size: 20px;
+            color:#fff;
+        }
+    </style>
+
+</head>	
+	<script type="text/javascript">
+	
+window.alert = function(txt)
+{
+	var shield = document.createElement("DIV");
+	shield.id = "shield";
+	shield.style.position = "absolute";
+	shield.style.left = "0px";
+	shield.style.top = "0px";
+	shield.style.width = "100%";
+	shield.style.height = document.body.scrollHeight+"px";
+	shield.style.background = "#333";
+	shield.style.textAlign = "center";
+	shield.style.zIndex = "10000";
+	shield.style.filter = "alpha(opacity=0)";
+	var alertFram = document.createElement("DIV");
+	alertFram.id="alertFram";
+	alertFram.style.position = "absolute";
+	alertFram.style.left = "50%";
+	alertFram.style.top = "50%";
+	alertFram.style.marginLeft = "-225px";
+	alertFram.style.marginTop = "-75px";
+	alertFram.style.width = "450px";
+	alertFram.style.height = "150px";
+	alertFram.style.background = "#ccc";
+	alertFram.style.textAlign = "center";
+	alertFram.style.lineHeight = "150px";
+	alertFram.style.zIndex = "10001";
+	strHtml = "<ul style=\"list-style:none;margin:0px;padding:0px;width:100%\">\n";
+	strHtml += " <li style=\"background:#DD828D;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #F9CADE;\">[MovieLook系统提示]</li>\n";
+	strHtml += " <li style=\"background:#fff;text-align:center;font-size:17px;height:120px;line-height:120px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;\">"+txt+"</li>\n";
+	strHtml += " <li style=\"background:#FDEEF4;text-align:center;font-weight:bold;height:25px;line-height:25px; border:1px solid #F9CADE;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" /></li>\n";
+	strHtml += "</ul>\n";
+	alertFram.innerHTML = strHtml;
+	document.body.appendChild(alertFram);
+	document.body.appendChild(shield);
+	var c = 0;
+	this.doAlpha = function(){
+		if (c++ > 20){clearInterval(ad);return 0;}
+		shield.style.filter = "alpha(opacity="+c+");";
+	}
+	var ad = setInterval("doAlpha()",5);
+	this.doOk = function(){
+		alertFram.style.display = "none";
+		shield.style.display = "none";
+	}
+	alertFram.focus();
+	document.body.onselectstart = function(){return false;};
+}
+
+	</script>
+<body>
+<div>
+    <li><a href="index.html" class="return">返回主页</a></li>
+	<li><a href="register.html" class="Return">首次登录？注册新用户</a></li>
+</div>
+<div id="bg_wrap">
+    <div><img src="images/log/3.jpg" width="100%" height="100%"></div>
+    <div><img src="images/log/1.jpg" width="100%" height="100%"></div>
+</div>
+
+</body>
+
+</html>
