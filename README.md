@@ -41,6 +41,6 @@
 | 1 | SZ160110224 | 姜昊 | jianghao | `JawnHoan` | 
 | 2 | SZ160110231 | 但远琦 | danyuanqi | 
 | 3 | 数据可视化 | 使用了 `echarts.js` 插件 | 基础功能
-| 4 | SZ160110216 | 赵昕玥 | zhaoxinyue | 
+| 4 | 生成报表 | 使用了 `jsPdf.js` 插件 | zhaoxinyue | 基础功能
 | 5 | SZ160110205 | 许浚伟 | xujunwei |
 - - -
